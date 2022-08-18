@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <meta name="author" content="wyunan">
+  
+
+   
+    
+    
+    
+    
+    
+    
+    <meta name="keywords" content="security,wyunan">
+  
+
+   
+    <meta name="description" content="开卷！">
+  
+
+  <meta name="generator" content="Hugo 0.101.0" />
+  
+  
+  
+  
+  
+  
+  <title>Rsync介绍 🌟 愚喃</title>
+
+  <meta property="og:title" content="Rsync介绍" />
+<meta property="og:description" content="一、简介 rsync 是一个常用的 Linux 应用程序，用于文件同步。 它可以在本地计算机与远程计算机之间，或者两个本地目录之间同步文件（但不支持两台远程计算机之间" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://blog.wyunan.icu/posts/202208182234/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-18T22:34:46+08:00" />
+<meta property="article:modified_time" content="2022-08-18T22:34:46+08:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Rsync介绍"/>
+<meta name="twitter:description" content="一、简介 rsync 是一个常用的 Linux 应用程序，用于文件同步。 它可以在本地计算机与远程计算机之间，或者两个本地目录之间同步文件（但不支持两台远程计算机之间"/>
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="http://blog.wyunan.icu/assets/css/style.min.699f46622e3574a7f9ecca4c5877067845fe89ffcd9c4335df2dff23ddae215e.css" integrity="sha256-aZ9GYi41dKf57MpMWHcGeEX&#43;if/NnEM13y3/I92uIV4=">
+
+  <script src="http://blog.wyunan.icu/assets/js/main.min.182da266209851bc7c828aa7377f98f914e1e76c8decdd53a6cbe9bffea92cde.js" integrity="sha256-GC2iZiCYUbx8goqnN3&#43;Y&#43;RTh52yN7N1Tpsvpv/6pLN4="></script>
+  
+  </head><body><header class="header-container layout-block layout-padding">
+  <div class="header-inner content-padding-large soft-size--large soft-style--box">
+    <div class="header-logo">
+      <a href="http://blog.wyunan.icu"><h1>愚喃</h1></a>
+    </div>
+    <nav class="header-nav">
+      <div class="header-nav--btn">
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+        <div class="btn-item"></div>
+      </div>
+      <div class="header-nav--list">
+        <div>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/" title="">主页</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/posts" title="">博文</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/message" title="">信息</a>
+          
+          <a class="list-item soft-size--small soft-style--hover soft-style--active" href="/link" title="">链接</a>
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</header><main id="content">
+    
+
+    <div class="single-container layout-block">
+      <div class="article-info">
+        <div class="article-header layout-padding">
+          <div class="article-cover card-container content-padding-large soft-size--large soft-style--box img">
+
+  <div class="card-cover">
+    
+      <img src="/image/4.jpg" alt="/image/4.jpg" />
+    
+  </div>
+
+  <div class="card-text">
+    <h1 class="card-text--title">Rsync介绍</h1>
+    
+      <p class="card-text--row">2022-08-18 22:34</p>
+      
+      
+      
+        <ul class="card-text--tag">
+          
+            <li><a href="http://blog.wyunan.icu/categories/linux/">Linux</a></li></ul>
+      
+
+      
+      
+        <ul class="card-text--tag">
+          
+            <li><a href="http://blog.wyunan.icu/tags/%E5%B7%A5%E5%85%B7%E5%BA%93/">工具库</a></li></ul>
+      
+    
+  </div>
+
+</div>
+        </div>
+
+        <div class="article-content">
+          <div class="markdown-body content-padding-large soft-size--large soft-style--box">
+            <h1 id="一简介">一、简介</h1>
+<p>rsync 是一个常用的 Linux 应用程序，用于文件同步。</p>
+<p>它可以在本地计算机与远程计算机之间，或者两个本地目录之间同步文件（但不支持两台远程计算机之间的同步）。它也可以当作文件复制工具，替代 cp 和 mv 命令。</p>
+<p>它名称里面的r指的是 remote，rsync 其实就是&quot;远程同步&quot;（remote sync）的意思。与其他文件传输工具（如 FTP 或 scp）不同，rsync 的最大特点是会检查发送方和接收方已有的文件，仅传输有变动的部分（默认规则是文件大小或修改时间有变动）。</p>
+<h1 id="二安装">二、安装</h1>
+<p>如果本机或者远程计算机没有安装 rsync，可以用下面的命令安装。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span><span style="color:#75715e"># Debian </span>
+</span></span><span style="display:flex;"><span>$ sudo apt-get install rsync 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Red Hat </span>
+</span></span><span style="display:flex;"><span>$ sudo yum install rsync 
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Arch Linux </span>
+</span></span><span style="display:flex;"><span>$ sudo pacman -S rsync
+</span></span></code></pre></div><p>注意，传输的双方都必须安装 rsync。</p>
+<h1 id="三基本用法">三、基本用法</h1>
+<h2 id="31--r-参数">3.1 -r 参数</h2>
+<p>本机使用 rsync 命令时，可以作为cp和mv命令的替代方法，将源目录同步到目标目录。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -r source destination
+</span></span></code></pre></div><p>上面命令中，-r表示递归，即包含子目录。注意，-r是必须的，否则 rsync 运行不会成功。source目录表示源目录，destination表示目标目录。</p>
+<p>如果有多个文件或目录需要同步，可以写成下面这样。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -r source1 source2 destination
+</span></span></code></pre></div><p>上面命令中，source1、source2都会被同步到destination目录。</p>
+<h2 id="32--a-参数">3.2 -a 参数</h2>
+<p>-a参数可以替代-r，除了可以递归同步以外，还可以同步元信息（比如修改时间、权限等）。由于 rsync 默认使用文件大小和修改时间决定文件是否需要更新，所以-a比-r更有用。下面的用法才是常见的写法。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -a source destination
+</span></span></code></pre></div><p>目标目录destination如果不存在，rsync 会自动创建。执行上面的命令后，源目录source被完整地复制到了目标目录destination下面，即形成了destination/source的目录结构。</p>
+<p>如果只想同步源目录source里面的内容到目标目录destination，则需要在源目录后面加上斜杠。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -a source/ destination
+</span></span></code></pre></div><p>上面命令执行后，source目录里面的内容，就都被复制到了destination目录里面，并不会在destination下面创建一个source子目录。</p>
+<h2 id="33--n-参数">3.3 -n 参数</h2>
+<p>如果不确定 rsync 执行后会产生什么结果，可以先用-n或&ndash;dry-run参数模拟执行的结果。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -anv source/ destination
+</span></span></code></pre></div><p>上面命令中，-n参数模拟命令执行的结果，并不真的执行命令。-v参数则是将结果输出到终端，这样就可以看到哪些内容会被同步。</p>
+<h2 id="34---delete-参数">3.4 &ndash;delete 参数</h2>
+<p>默认情况下，rsync 只确保源目录的所有内容（明确排除的文件除外）都复制到目标目录。它不会使两个目录保持相同，并且不会删除文件。如果要使得目标目录成为源目录的镜像副本，则必须使用&ndash;delete参数，这将删除只存在于目标目录、不存在于源目录的文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av --delete source/ destination
+</span></span></code></pre></div><p>上面命令中，&ndash;delete参数会使得destination成为source的一个镜像。</p>
+<h1 id="四排除文件">四、排除文件</h1>
+<h2 id="41---exclude-参数">4.1 &ndash;exclude 参数</h2>
+<p>有时，我们希望同步时排除某些文件或目录，这时可以用&ndash;exclude参数指定排除模式。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av --exclude<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;*.txt&#39;</span> source/ destination
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者 </span>
+</span></span><span style="display:flex;"><span>$ rsync -av --exclude <span style="color:#e6db74">&#39;*.txt&#39;</span> source/ destination
+</span></span></code></pre></div><p>上面命令排除了所有 TXT 文件。</p>
+<p>注意，rsync 会同步以&quot;点&quot;开头的隐藏文件，如果要排除隐藏文件，可以这样写&ndash;exclude=&quot;.*&quot;。</p>
+<p>如果要排除某个目录里面的所有文件，但不希望排除目录本身，可以写成下面这样。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av --exclude <span style="color:#e6db74">&#39;dir1/*&#39;</span> source/ destination
+</span></span></code></pre></div><p>多个排除模式，可以用多个&ndash;exclude参数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av --exclude <span style="color:#e6db74">&#39;file1.txt&#39;</span> --exclude <span style="color:#e6db74">&#39;dir1/*&#39;</span> source/ destination
+</span></span></code></pre></div><p>多个排除模式也可以利用 Bash 的大扩号的扩展功能，只用一个&ndash;exclude参数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av --exclude<span style="color:#f92672">={</span><span style="color:#e6db74">&#39;file1.txt&#39;</span>,<span style="color:#e6db74">&#39;dir1/*&#39;</span><span style="color:#f92672">}</span> source/ destination
+</span></span></code></pre></div><p>如果排除模式很多，可以将它们写入一个文件，每个模式一行，然后用&ndash;exclude-from参数指定这个文件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av --exclude-from<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;exclude-file.txt&#39;</span> source/ destination
+</span></span></code></pre></div><h2 id="42---include-参数">4.2 &ndash;include 参数</h2>
+<p>&ndash;include参数用来指定必须同步的文件模式，往往与&ndash;exclude结合使用。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av --include<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;*.txt&#34;</span> --exclude<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;*&#39;</span> source/ destination
+</span></span></code></pre></div><p>上面命令指定同步时，排除所有文件，但是会包括 TXT 文件。</p>
+<h1 id="五远程同步">五、远程同步</h1>
+<h2 id="51-ssh-协议">5.1 SSH 协议</h2>
+<p>rsync 除了支持本地两个目录之间的同步，也支持远程同步。它可以将本地内容，同步到远程服务器。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av source/ <span style="color:#f92672">[</span>username@remote_host<span style="color:#f92672">](</span>mailto:username@remote_host<span style="color:#f92672">)</span>:destination
+</span></span></code></pre></div><p>也可以将远程内容同步到本地。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av <span style="color:#f92672">[</span>username@remote_host<span style="color:#f92672">](</span>mailto:username@remote_host<span style="color:#f92672">)</span>:source/ destination
+</span></span></code></pre></div><p>rsync 默认使用 SSH 进行远程登录和数据传输。</p>
+<p>由于早期 rsync 不使用 SSH 协议，需要用-e参数指定协议，后来才改的。所以，下面-e ssh可以省略。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av -e ssh source/ <span style="color:#f92672">[</span>user@remote_host<span style="color:#f92672">](</span>mailto:user@remote_host<span style="color:#f92672">)</span>:/destination
+</span></span></code></pre></div><p>但是，如果 ssh 命令有附加的参数，则必须使用-e参数指定所要执行的 SSH 命令。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av -e <span style="color:#e6db74">&#39;ssh -p 2234&#39;</span> source/ <span style="color:#f92672">[</span>user@remote_host<span style="color:#f92672">](</span>mailto:user@remote_host<span style="color:#f92672">)</span>:/destination
+</span></span></code></pre></div><p>上面命令中，-e参数指定 SSH 使用2234端口。</p>
+<h2 id="52-rsync-协议">5.2 rsync 协议</h2>
+<p>除了使用 SSH，如果另一台服务器安装并运行了 rsync 守护程序，则也可以用rsync://协议（默认端口873）进行传输。具体写法是服务器与目标目录之间使用双冒号分隔::。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av source/ 192.168.122.32::module/destination
+</span></span></code></pre></div><p>注意，上面地址中的module并不是实际路径名，而是 rsync 守护程序指定的一个资源名，由管理员分配。</p>
+<p>如果想知道 rsync 守护程序分配的所有 module 列表，可以执行下面命令。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync rsync://192.168.122.32
+</span></span></code></pre></div><p>rsync 协议除了使用双冒号，也可以直接用rsync://协议指定地址。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -av source/ rsync://192.168.122.32/module/destination
+</span></span></code></pre></div><h1 id="六增量备份">六、增量备份</h1>
+<p>rsync 的最大特点就是它可以完成增量备份，也就是默认只复制有变动的文件。</p>
+<p>除了源目录与目标目录直接比较，rsync 还支持使用基准目录，即将源目录与基准目录之间变动的部分，同步到目标目录。</p>
+<p>具体做法是，第一次同步是全量备份，所有文件在基准目录里面同步一份。以后每一次同步都是增量备份，只同步源目录与基准目录之间有变动的部分，将这部分保存在一个新的目标目录。这个新的目标目录之中，也是包含所有文件，但实际上，只有那些变动过的文件是存在于该目录，其他没有变动的文件都是指向基准目录文件的硬链接。</p>
+<p>&ndash;link-dest参数用来指定同步时的基准目录。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ rsync -a --delete --link-dest /compare/path /source/path /target/path
+</span></span></code></pre></div><p>上面命令中，&ndash;link-dest参数指定基准目录/compare/path，然后源目录/source/path跟基准目录进行比较，找出变动的文件，将它们拷贝到目标目录/target/path。那些没变动的文件则会生成硬链接。这个命令的第一次备份时是全量备份，后面就都是增量备份了。</p>
+<p>下面是一个脚本示例，备份用户的主目录。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#75715e"># A script to perform incremental backups using rsync </span>
+</span></span><span style="display:flex;"><span>set -o errexit 
+</span></span><span style="display:flex;"><span>set -o nounset 
+</span></span><span style="display:flex;"><span>set -o pipefail 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>readonly SOURCE_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 
+</span></span><span style="display:flex;"><span>readonly BACKUP_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/mnt/data/backups&#34;</span> 
+</span></span><span style="display:flex;"><span>readonly DATETIME<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>date <span style="color:#e6db74">&#39;+%Y-%m-%d_%H:%M:%S&#39;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span> 
+</span></span><span style="display:flex;"><span>readonly BACKUP_PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BACKUP_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">${</span>DATETIME<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 
+</span></span><span style="display:flex;"><span>readonly LATEST_LINK<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BACKUP_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/latest&#34;</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mkdir -p <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BACKUP_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rsync -av --delete <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SOURCE_DIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/&#34;</span> --link-dest <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>LATEST_LINK<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> --exclude<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.cache&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BACKUP_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rm -rf <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>LATEST_LINK<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> 
+</span></span><span style="display:flex;"><span>ln -s <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>BACKUP_PATH<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>LATEST_LINK<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>上面脚本中，每一次同步都会生成一个新目录${BACKUP_DIR}/${DATETIME}，并将软链接${BACKUP_DIR}/latest指向这个目录。下一次备份时，就将${BACKUP_DIR}/latest作为基准目录，生成新的备份目录。最后，再将软链接${BACKUP_DIR}/latest指向新的备份目录。</p>
+<h1 id="七配置项">七、配置项</h1>
+<p>-a、&ndash;archive参数表示存档模式，保存所有的元数据，比如修改时间（modification time）、权限、所有者等，并且软链接也会同步过去。</p>
+<p>&ndash;append参数指定文件接着上次中断的地方，继续传输。</p>
+<p>&ndash;append-verify参数跟&ndash;append参数类似，但会对传输完成后的文件进行一次校验。如果校验失败，将重新发送整个文件。</p>
+<p>-b、&ndash;backup参数指定在删除或更新目标目录已经存在的文件时，将该文件更名后进行备份，默认行为是删除。更名规则是添加由&ndash;suffix参数指定的文件后缀名，默认是~。</p>
+<p>&ndash;backup-dir参数指定文件备份时存放的目录，比如&ndash;backup-dir=/path/to/backups。</p>
+<p>&ndash;bwlimit参数指定带宽限制，默认单位是 KB/s，比如&ndash;bwlimit=100。</p>
+<p>-c、&ndash;checksum参数改变rsync的校验方式。默认情况下，rsync 只检查文件的大小和最后修改日期是否发生变化，如果发生变化，就重新传输；使用这个参数以后，则通过判断文件内容的校验和，决定是否重新传输。</p>
+<p>&ndash;delete参数删除只存在于目标目录、不存在于源目标的文件，即保证目标目录是源目标的镜像。</p>
+<p>-e参数指定使用 SSH 协议传输数据。</p>
+<p>&ndash;exclude参数指定排除不进行同步的文件，比如&ndash;exclude=&quot;*.iso&quot;。</p>
+<p>&ndash;exclude-from参数指定一个本地文件，里面是需要排除的文件模式，每个模式一行。</p>
+<p>&ndash;existing、&ndash;ignore-non-existing参数表示不同步目标目录中不存在的文件和目录。</p>
+<p>-h参数表示以人类可读的格式输出。</p>
+<p>-h、&ndash;help参数返回帮助信息。</p>
+<p>-i参数表示输出源目录与目标目录之间文件差异的详细情况。</p>
+<p>&ndash;ignore-existing参数表示只要该文件在目标目录中已经存在，就跳过去，不再同步这些文件。</p>
+<p>&ndash;include参数指定同步时要包括的文件，一般与&ndash;exclude结合使用。</p>
+<p>&ndash;link-dest参数指定增量备份的基准目录。</p>
+<p>-m参数指定不同步空目录。</p>
+<p>&ndash;max-size参数设置传输的最大文件的大小限制，比如不超过200KB（&ndash;max-size=&lsquo;200k&rsquo;）。</p>
+<p>&ndash;min-size参数设置传输的最小文件的大小限制，比如不小于10KB（&ndash;min-size=10k）。</p>
+<p>-n参数或&ndash;dry-run参数模拟将要执行的操作，而并不真的执行。配合-v参数使用，可以看到哪些内容会被同步过去。</p>
+<p>-P参数是&ndash;progress和&ndash;partial这两个参数的结合。</p>
+<p>&ndash;partial参数允许恢复中断的传输。不使用该参数时，rsync会删除传输到一半被打断的文件；使用该参数后，传输到一半的文件也会同步到目标目录，下次同步时再恢复中断的传输。一般需要与&ndash;append或&ndash;append-verify配合使用。</p>
+<p>&ndash;partial-dir参数指定将传输到一半的文件保存到一个临时目录，比如&ndash;partial-dir=.rsync-partial。一般需要与&ndash;append或&ndash;append-verify配合使用。</p>
+<p>&ndash;progress参数表示显示进展。</p>
+<p>-r参数表示递归，即包含子目录。</p>
+<p>&ndash;remove-source-files参数表示传输成功后，删除发送方的文件。</p>
+<p>&ndash;size-only参数表示只同步大小有变化的文件，不考虑文件修改时间的差异。</p>
+<p>&ndash;suffix参数指定文件名备份时，对文件名添加的后缀，默认是~。</p>
+<p>-u、&ndash;update参数表示同步时跳过目标目录中修改时间更新的文件，即不同步这些有更新的时间戳的文件。</p>
+<p>-v参数表示输出细节。-vv表示输出更详细的信息，-vvv表示输出最详细的信息。</p>
+<p>&ndash;version参数返回 rsync 的版本。</p>
+<p>-z参数指定同步时压缩数据。</p>
+<h2 id="八参考链接">八、参考链接</h2>
+<ul>
+<li><a href="https://www.ruanyifeng.com/blog/2020/08/rsync.html" target="_blank" rel="noopener">https://www.ruanyifeng.com/blog/2020/08/rsync.html</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps" target="_blank" rel="noopener">How To Use Rsync to Sync Local and Remote Directories on a VPS</a>, Justin Ellingwood</li>
+<li><a href="https://www.howtoforge.com/mirroring_with_rsync" target="_blank" rel="noopener">Mirror Your Web Site With rsync</a>, Falko Timme</li>
+<li><a href="https://linuxconfig.org/examples-on-how-to-use-rsync-for-local-and-remote-data-backups-and-synchonization" target="_blank" rel="noopener">Examples on how to use Rsync</a>, Egidio Docile</li>
+<li><a href="https://linuxconfig.org/how-to-create-incremental-backups-using-rsync-on-linux" target="_blank" rel="noopener">How to create incremental backups using rsync on Linux</a>, Egidio Docile</li>
+<li><a href="https://blog.csdn.net/wq1205750492/article/details/124497271" target="_blank" rel="noopener">https://blog.csdn.net/wq1205750492/article/details/124497271</a></li>
+<li><a href="https://blog.csdn.net/woaizxy123/article/details/88660759" target="_blank" rel="noopener">https://blog.csdn.net/woaizxy123/article/details/88660759</a></li>
+<li><a href="http://lnmp.ailinux.net/rsync" target="_blank" rel="noopener">http://lnmp.ailinux.net/rsync</a></li>
+<li><a href="https://www.cnblogs.com/yangchunlong/articles/9452843.html" target="_blank" rel="noopener">https://www.cnblogs.com/yangchunlong/articles/9452843.html</a></li>
+</ul>
+
+          </div>
+        </div>
+                 
+      
+  
+  
+  
+  
+
+  
+
+  <div class="article-paging">
+    
+    
+      <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
+  <div class="card-cover" background-image-lazy data-img="/image/3.jpg"></div>
+  <div class="card-text">
+    <a href="/posts/202208172330/"><h4 class="card-text--title text-ellipsis">AES概述</h4></a>
+    <p class="card-text--row">2022-08-17 23:30</p>
+  </div>
+</section>
+    
+  </div>
+</div>
+  <aside class="widget-info">
+    
+<section class="aside-widget widget-author content-padding-large soft-size--large soft-style--box">
+  <div class="widget-body">
+    <div class="author-box avatar">
+      
+      <img class="author-avatar soft-size--round soft-style--box" src="/image/avatar.jpg" alt="wyunan">
+      
+      <h2 class="author-name text-ellipsis">wyunan</h2>
+      
+      <p class="author-desc text-ellipsis">路边飘的垃圾袋装着没人要的风</p>
+      
+    </div>
+  </div>
+</section>
+
+
+    
+
+
+    
+
+
+
+
+
+
+
+
+
+
+<section class="aside-widget widget-articles content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>Related Posts</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <ul class="post-list">
+      
+      
+        <li class="post-item"><a href="/posts/202208172330/">AES概述</a></li>
+      
+        <li class="post-item"><a href="/posts/202203102037/">CVE-2022-22947</a></li>
+      
+        <li class="post-item"><a href="/posts/202102252222/">字符编码介绍</a></li>
+      
+    </ul>
+  </div>
+</section>
+
+
+    
+
+
+
+
+<section class="aside-widget widget-categories content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>Categories</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <ul class="categories-list">
+      
+        <li>
+          <a href="http://blog.wyunan.icu/categories/cve/">CVE</a>
+          <span>1</span>
+        </li>
+      
+        <li>
+          <a href="http://blog.wyunan.icu/categories/linux/">Linux</a>
+          <span>1</span>
+        </li>
+      
+        <li>
+          <a href="http://blog.wyunan.icu/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/">密码学</a>
+          <span>1</span>
+        </li>
+      
+        <li>
+          <a href="http://blog.wyunan.icu/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">计算机基础知识</a>
+          <span>1</span>
+        </li>
+      
+    </ul>
+  </div>
+
+  
+</section>
+
+
+    
+
+
+
+
+<section class="aside-widget widget-tags content-padding-large soft-size--large soft-style--box">
+  <h2 class="widget-header">
+    <div class="title">
+      <span>Tags</span>
+    </div>
+  </h2>
+  <div class="widget-body">
+    <div class="tags-list">
+      
+        <a href="http://blog.wyunan.icu/tags/aes/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">AES</a>
+      
+        <a href="http://blog.wyunan.icu/tags/springcloudgatewayserver/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">SpringCloudGatewayServer</a>
+      
+        <a href="http://blog.wyunan.icu/tags/%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">字符编码</a>
+      
+        <a href="http://blog.wyunan.icu/tags/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">对称加密算法</a>
+      
+        <a href="http://blog.wyunan.icu/tags/%E5%B7%A5%E5%85%B7%E5%BA%93/" data-count="1" class="soft-size--small soft-style--hover soft-style--active">工具库</a>
+      
+    </div>
+  </div>
+
+  
+</section>
+
+  </aside>
+</div>
+  </main><footer class="footer-container layout-block">
+  
+  <div class="social-icons">
+    
+      <a class="soft-size--primary soft-style--box" href="https://github.com/wyunan" target="_blank" rel="noopener noreferrer">
+          
+        <svg class="icon icon-github" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"></path>
+        </svg>
+        
+
+        
+
+        
+
+        
+
+        
+      </a>
+    
+      <a class="soft-size--primary soft-style--box" href="https://twitter.com/_wyunan" target="_blank" rel="noopener noreferrer">
+        
+
+          
+        <svg class="icon icon-twitter" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M962.285714 233.142857q-38.285714 56-92.571429 95.428571 0.571429 8 0.571429 24 0 74.285714-21.714286 148.285714t-66 142-105.428571 120.285714-147.428571 83.428571-184.571429 31.142857q-154.857143 0-283.428571-82.857143 20 2.285714 44.571429 2.285714 128.571429 0 229.142857-78.857143-60-1.142857-107.428571-36.857143t-65.142857-91.142857q18.857143 2.857143 34.857143 2.857143 24.571429 0 48.571429-6.285714-64-13.142857-106-63.714286t-42-117.428571l0-2.285714q38.857143 21.714286 83.428571 23.428571-37.714286-25.142857-60-65.714286t-22.285714-88q0-50.285714 25.142857-93.142857 69.142857 85.142857 168.285714 136.285714t212.285714 56.857143q-4.571429-21.714286-4.571429-42.285714 0-76.571429 54-130.571429t130.571429-54q80 0 134.857143 58.285714 62.285714-12 117.142857-44.571429-21.142857 65.714286-81.142857 101.714286 53.142857-5.714286 106.285714-28.571429z"></path>
+        </svg>
+        
+
+        
+
+        
+
+        
+      </a>
+    
+      <a class="soft-size--primary soft-style--box" href="https://weibo.com/u/5697494249" target="_blank" rel="noopener noreferrer">
+        
+
+        
+
+        
+
+          
+        <svg class="icon icon-weibo" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <path d="M385.682429 733.696q11.995429-19.456 6.290286-39.424t-25.746286-28.598857q-19.456-7.972571-41.691429-0.585143t-34.304 26.258286q-12.580571 19.456-7.460571 39.131429t24.576 28.891429 42.569143 1.462857 35.693714-27.136zM439.442429 664.576q4.534857-7.460571 1.974857-15.140571t-10.020571-10.605714q-7.972571-2.852571-16.310857 0.292571t-12.288 10.605714q-9.728 17.700571 7.460571 25.746286 7.972571 2.852571 16.603429-0.292571t12.580571-10.605714zM538.843572 725.723429q-25.746286 58.294857-90.258286 85.723429t-128 6.875429q-61.147429-19.456-84.260571-72.265143t3.730286-107.154286q26.843429-53.174857 86.601143-79.433143t120.32-10.825143q63.414857 16.603429 90.550857 68.315429t1.462857 108.836571zM717.165858 634.294857q-5.12-54.857143-50.834286-97.133714t-119.149714-62.317714-156.891429-11.995429q-127.414857 13.165714-211.163429 80.822857t-75.702857 151.113143q5.12 54.857143 50.834286 97.133714t119.149714 62.317714 156.891429 11.995429q127.414857-13.165714 211.163429-80.822857t75.702857-151.113143zM893.147572 636.562286q0 38.838857-21.138286 79.725714t-62.317714 78.262857-96.256 67.145143-129.170286 47.396571-154.550857 17.700571-157.110857-19.163429-137.435429-53.174857-98.011429-86.308571-37.156571-114.029714q0-65.682286 39.716571-139.995429t112.859429-147.456q96.548571-96.548571 195.145143-134.875429t140.873143 4.022857q37.156571 36.571429 11.410286 119.442286-2.267429 7.972571-0.585143 11.410286t5.705143 4.022857 8.265143-0.292571 7.68-1.974857l3.437714-1.170286q79.433143-33.718857 140.580571-33.718857t87.405714 34.889143q25.746286 35.986286 0 101.741714-1.170286 7.460571-2.56 11.410286t2.56 7.168 6.875429 4.315429 9.728 3.437714q32.548571 10.313143 58.88 26.843429t45.714286 46.592 19.456 66.56zM850.871001 279.990857q23.990857 26.843429 31.158857 62.025143t-3.730286 67.145143q-4.534857 13.165714-16.822857 19.456t-25.453714 2.267429q-13.165714-4.534857-19.456-16.822857t-2.267429-25.453714q11.410286-35.986286-13.677714-63.414857t-61.147429-19.968q-13.677714 2.852571-25.746286-4.534857t-14.262857-21.138286q-2.852571-13.677714 4.534857-25.453714t21.138286-14.555429q34.304-7.460571 68.022857 3.145143t57.709714 37.449143zM954.295001 186.88q49.737143 54.857143 64.292571 127.122286t-7.68 138.020571q-5.12 15.433143-19.456 22.820571t-29.696 2.267429-22.820571-19.456-2.852571-29.696q16.018286-46.884571 5.705143-98.304t-45.714286-90.258286q-35.401143-39.424-84.553143-54.564571t-98.889143-4.827429q-16.018286 3.437714-29.696-5.412571t-17.115429-24.868571 5.412571-29.403429 24.868571-16.822857q70.290286-14.848 139.410286 6.582857t118.857143 76.873143z"></path>
+        </svg>
+        
+
+        
+      </a>
+    
+  </div>
+  
+
+  <div class="colour-bar"></div>
+  
+  
+  <p>© 2021 <a href="https://github.com/wyunan">wyunan</a></p>
+  
+
+  
+
+  <p>
+    Powered by
+    <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>
+    Theme - 
+    <a href="https://github.com/miiiku/hugo-theme-kagome" target="_blank" rel="noopener noreferrer author">kagome</a>
+  </p>
+
+  <p>
+    <a href="javascript:;" id="theme-light">🌞 light</a>
+    <a href="javascript:;" id="theme-dark">🌛 dark</a>
+    <a href="javascript:;" id="theme-auto">🤖️ auto</a>
+  </p>
+</footer>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
