@@ -38,6 +38,15 @@
     </item>
     
     <item>
+      <title>HTTP请求走私详解</title>
+      <link>http://blog.wyunan.icu/posts/202106062308/</link>
+      <pubDate>Sun, 06 Jun 2021 23:08:13 +0800</pubDate>
+      <author>al0sc0605@gmail.com (wyunan)</author>
+      <guid>http://blog.wyunan.icu/posts/202106062308/</guid>
+      <description>什么是HTTP请求走私？ HTTP请求走私是一种干扰网站处理从一个或多个用户收到的 HTTP 请求序列方式的技术。 请求走私漏洞在本质上通常很关键，允许攻</description>
+    </item>
+    
+    <item>
       <title>字符编码介绍</title>
       <link>http://blog.wyunan.icu/posts/202102252222/</link>
       <pubDate>Thu, 25 Feb 2021 22:22:51 +0800</pubDate>
