@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>web漏洞 on 愚喃</title>
-    <link>http://blog.wyunan.icu/categories/web%E6%BC%8F%E6%B4%9E/</link>
+    <link>https://wyunan.github.io/categories/web%E6%BC%8F%E6%B4%9E/</link>
     <description>Recent content in web漏洞 on 愚喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <managingEditor>al0sc0605@gmail.com (wyunan)</managingEditor>
     <webMaster>al0sc0605@gmail.com (wyunan)</webMaster>
     <copyright>© 2021 &lt;a href=&#34;https://github.com/wyunan&#34;&gt;wyunan&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 06 Jun 2021 23:08:13 +0800</lastBuildDate><atom:link href="http://blog.wyunan.icu/categories/web%E6%BC%8F%E6%B4%9E/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Jun 2021 23:08:13 +0800</lastBuildDate><atom:link href="https://wyunan.github.io/categories/web%E6%BC%8F%E6%B4%9E/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>HTTP请求走私详解</title>
-      <link>http://blog.wyunan.icu/posts/202106062308/</link>
+      <link>https://wyunan.github.io/posts/202106062308/</link>
       <pubDate>Sun, 06 Jun 2021 23:08:13 +0800</pubDate>
       <author>al0sc0605@gmail.com (wyunan)</author>
-      <guid>http://blog.wyunan.icu/posts/202106062308/</guid>
+      <guid>https://wyunan.github.io/posts/202106062308/</guid>
       <description>什么是HTTP请求走私？ HTTP请求走私是一种干扰网站处理从一个或多个用户收到的 HTTP 请求序列方式的技术。 请求走私漏洞在本质上通常很关键，允许攻</description>
     </item>
     

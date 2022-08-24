@@ -2,56 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>愚喃</title>
-    <link>http://blog.wyunan.icu/</link>
+    <link>https://wyunan.github.io/</link>
     <description>Recent content on 愚喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <managingEditor>al0sc0605@gmail.com (wyunan)</managingEditor>
     <webMaster>al0sc0605@gmail.com (wyunan)</webMaster>
     <copyright>© 2021 &lt;a href=&#34;https://github.com/wyunan&#34;&gt;wyunan&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 18 Aug 2022 22:34:46 +0800</lastBuildDate><atom:link href="http://blog.wyunan.icu/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Aug 2022 22:34:46 +0800</lastBuildDate><atom:link href="https://wyunan.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rsync介绍</title>
-      <link>http://blog.wyunan.icu/posts/202208182234/</link>
+      <link>https://wyunan.github.io/posts/202208182234/</link>
       <pubDate>Thu, 18 Aug 2022 22:34:46 +0800</pubDate>
       <author>al0sc0605@gmail.com (wyunan)</author>
-      <guid>http://blog.wyunan.icu/posts/202208182234/</guid>
+      <guid>https://wyunan.github.io/posts/202208182234/</guid>
       <description>一、简介 rsync 是一个常用的 Linux 应用程序，用于文件同步。 它可以在本地计算机与远程计算机之间，或者两个本地目录之间同步文件（但不支持两台远程计算机之间</description>
     </item>
     
     <item>
       <title>AES概述</title>
-      <link>http://blog.wyunan.icu/posts/202208172330/</link>
+      <link>https://wyunan.github.io/posts/202208172330/</link>
       <pubDate>Wed, 17 Aug 2022 23:30:26 +0800</pubDate>
       <author>al0sc0605@gmail.com (wyunan)</author>
-      <guid>http://blog.wyunan.icu/posts/202208172330/</guid>
+      <guid>https://wyunan.github.io/posts/202208172330/</guid>
       <description>什么是AES 密码学中的高级加密标准（Advanced Encryption Standard，AES），又称Rijndael加密法，是美国联邦政府采用的一种区块加</description>
     </item>
     
     <item>
       <title>CVE-2022-22947</title>
-      <link>http://blog.wyunan.icu/posts/202203102037/</link>
+      <link>https://wyunan.github.io/posts/202203102037/</link>
       <pubDate>Thu, 10 Mar 2022 20:37:09 +0800</pubDate>
       <author>al0sc0605@gmail.com (wyunan)</author>
-      <guid>http://blog.wyunan.icu/posts/202203102037/</guid>
+      <guid>https://wyunan.github.io/posts/202203102037/</guid>
       <description>产品介绍 Spring Cloud Gateway 是基于 Spring Framework 和 Spring Boot 构建的 API 网关，它旨在为微服务架构提供一种简单、有效、统一的 API 路由管理方式。 漏洞介绍 当启用和暴露 Gateway Actuator 端点时，使用</description>
     </item>
     
     <item>
       <title>HTTP请求走私详解</title>
-      <link>http://blog.wyunan.icu/posts/202106062308/</link>
+      <link>https://wyunan.github.io/posts/202106062308/</link>
       <pubDate>Sun, 06 Jun 2021 23:08:13 +0800</pubDate>
       <author>al0sc0605@gmail.com (wyunan)</author>
-      <guid>http://blog.wyunan.icu/posts/202106062308/</guid>
+      <guid>https://wyunan.github.io/posts/202106062308/</guid>
       <description>什么是HTTP请求走私？ HTTP请求走私是一种干扰网站处理从一个或多个用户收到的 HTTP 请求序列方式的技术。 请求走私漏洞在本质上通常很关键，允许攻</description>
     </item>
     
     <item>
       <title>字符编码介绍</title>
-      <link>http://blog.wyunan.icu/posts/202102252222/</link>
+      <link>https://wyunan.github.io/posts/202102252222/</link>
       <pubDate>Thu, 25 Feb 2021 22:22:51 +0800</pubDate>
       <author>al0sc0605@gmail.com (wyunan)</author>
-      <guid>http://blog.wyunan.icu/posts/202102252222/</guid>
+      <guid>https://wyunan.github.io/posts/202102252222/</guid>
       <description>字符编码一些基础定义 什么是字符？ 字符是各种文字和符号的总称，包括各个国家文字、标点符号、图形符号、数字等。 什么是字符集？ 字符集是多个字符的集</description>
     </item>
     

@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SpringCloudGatewayServer on 愚喃</title>
-    <link>http://blog.wyunan.icu/tags/springcloudgatewayserver/</link>
+    <link>https://wyunan.github.io/tags/springcloudgatewayserver/</link>
     <description>Recent content in SpringCloudGatewayServer on 愚喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <managingEditor>al0sc0605@gmail.com (wyunan)</managingEditor>
     <webMaster>al0sc0605@gmail.com (wyunan)</webMaster>
     <copyright>© 2021 &lt;a href=&#34;https://github.com/wyunan&#34;&gt;wyunan&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 10 Mar 2022 20:37:09 +0800</lastBuildDate><atom:link href="http://blog.wyunan.icu/tags/springcloudgatewayserver/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 10 Mar 2022 20:37:09 +0800</lastBuildDate><atom:link href="https://wyunan.github.io/tags/springcloudgatewayserver/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CVE-2022-22947</title>
-      <link>http://blog.wyunan.icu/posts/202203102037/</link>
+      <link>https://wyunan.github.io/posts/202203102037/</link>
       <pubDate>Thu, 10 Mar 2022 20:37:09 +0800</pubDate>
       <author>al0sc0605@gmail.com (wyunan)</author>
-      <guid>http://blog.wyunan.icu/posts/202203102037/</guid>
+      <guid>https://wyunan.github.io/posts/202203102037/</guid>
       <description>产品介绍 Spring Cloud Gateway 是基于 Spring Framework 和 Spring Boot 构建的 API 网关，它旨在为微服务架构提供一种简单、有效、统一的 API 路由管理方式。 漏洞介绍 当启用和暴露 Gateway Actuator 端点时，使用</description>
     </item>
     

@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on 愚喃</title>
-    <link>http://blog.wyunan.icu/categories/linux/</link>
+    <link>https://wyunan.github.io/categories/linux/</link>
     <description>Recent content in Linux on 愚喃</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <managingEditor>al0sc0605@gmail.com (wyunan)</managingEditor>
     <webMaster>al0sc0605@gmail.com (wyunan)</webMaster>
     <copyright>© 2021 &lt;a href=&#34;https://github.com/wyunan&#34;&gt;wyunan&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 18 Aug 2022 22:34:46 +0800</lastBuildDate><atom:link href="http://blog.wyunan.icu/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 18 Aug 2022 22:34:46 +0800</lastBuildDate><atom:link href="https://wyunan.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Rsync介绍</title>
-      <link>http://blog.wyunan.icu/posts/202208182234/</link>
+      <link>https://wyunan.github.io/posts/202208182234/</link>
       <pubDate>Thu, 18 Aug 2022 22:34:46 +0800</pubDate>
       <author>al0sc0605@gmail.com (wyunan)</author>
-      <guid>http://blog.wyunan.icu/posts/202208182234/</guid>
+      <guid>https://wyunan.github.io/posts/202208182234/</guid>
       <description>一、简介 rsync 是一个常用的 Linux 应用程序，用于文件同步。 它可以在本地计算机与远程计算机之间，或者两个本地目录之间同步文件（但不支持两台远程计算机之间</description>
     </item>
     
