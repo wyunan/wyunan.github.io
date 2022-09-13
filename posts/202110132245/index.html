@@ -29,19 +29,19 @@
   
   
   
-  <title>SharedPreferences 🌟 愚喃</title>
+  <title>Linux目录结构 🌟 愚喃</title>
 
-  <meta property="og:title" content="SharedPreferences" />
-<meta property="og:description" content="Android 系统提供了四种 Android 应用本地存储方式：Shared Preferences、SQLite Databases、Internal Storage、Ex" />
+  <meta property="og:title" content="Linux目录结构" />
+<meta property="og:description" content="根目录（/）结构&amp;意义 第一部份：FHS 要求必须要存在的目录 /bin 系统有很多放置运行档的目录，但/bin比较特殊。因为/bin放置的是在单" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://wyunan.github.io/posts/202109132223/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-13T22:23:51+08:00" />
-<meta property="article:modified_time" content="2021-09-13T22:23:51+08:00" />
+<meta property="og:url" content="https://wyunan.github.io/posts/202110132245/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-10-13T22:45:32+08:00" />
+<meta property="article:modified_time" content="2021-10-13T22:45:32+08:00" />
 
 
   <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="SharedPreferences"/>
-<meta name="twitter:description" content="Android 系统提供了四种 Android 应用本地存储方式：Shared Preferences、SQLite Databases、Internal Storage、Ex"/>
+<meta name="twitter:title" content="Linux目录结构"/>
+<meta name="twitter:description" content="根目录（/）结构&amp;意义 第一部份：FHS 要求必须要存在的目录 /bin 系统有很多放置运行档的目录，但/bin比较特殊。因为/bin放置的是在单"/>
 
 
   
@@ -88,28 +88,27 @@
 
   <div class="card-cover">
     
-      <img src="/image/6.jpg" alt="/image/6.jpg" />
+      <img src="/image/7.jpg" alt="/image/7.jpg" />
     
   </div>
 
   <div class="card-text">
-    <h1 class="card-text--title">SharedPreferences</h1>
+    <h1 class="card-text--title">Linux目录结构</h1>
     
-      <p class="card-text--row">2021-09-13 22:23</p>
+      <p class="card-text--row">2021-10-13 22:45</p>
       
       
       
         <ul class="card-text--tag">
           
-            <li><a href="https://wyunan.github.io/categories/android/">Android</a></li></ul>
+            <li><a href="https://wyunan.github.io/categories/linux/">Linux</a></li></ul>
       
 
       
       
         <ul class="card-text--tag">
           
-            <li><a href="https://wyunan.github.io/tags/xml/">XML</a></li>
-            <li><a href="https://wyunan.github.io/tags/%E5%AE%89%E5%85%A8%E5%AD%98%E5%82%A8/">安全存储</a></li></ul>
+            <li><a href="https://wyunan.github.io/tags/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/">文件目录结构</a></li></ul>
       
     
   </div>
@@ -119,45 +118,63 @@
 
         <div class="article-content">
           <div class="markdown-body content-padding-large soft-size--large soft-style--box">
-            <p>Android 系统提供了四种 Android 应用本地存储方式：Shared Preferences、SQLite Databases、Internal Storage、External Storage 。其中Shared Preferences 是一种轻量级的基于 XML 文件存储的键值对 (key-value) 数据的数据存储方式，一般用于储存应用的配置等信息。</p>
-<hr>
-<h1 id="0x01介绍">0x01.介绍</h1>
-<p>在Android开发中，经常需要将少量简单类型数据保存在本地，如：用户设置。这些需要保存的数据可能一两个字符串，像这样的数据一般选择使用SharedPreferences来保存。</p>
-<p>SharedPreferences：一个轻量级的存储类，特别适合用于保存软件配置参数。（是用 xml 文件存放数据，文件存放在&quot;/data/data/package name/shared_prefs&quot;目录下）。</p>
-<h1 id="0x02-使用-sp-存储和读取数据的步骤">0x02. 使用 SP 存储和读取数据的步骤</h1>
-<h2 id="存储数据">存储数据</h2>
-<p>保存数据一般分为四个步骤：</p>
-<ol>
-<li>使用Activity类的getSharedPreferences方法获得SharedPreferences对象；</li>
-<li>使用SharedPreferences接口的edit获得SharedPreferences.Editor对象；</li>
-<li>通过SharedPreferences.Editor接口的putXXX方法保存key-value对；</li>
-<li>通过SharedPreferences.Editor接口的commit方法保存key-value对。</li>
-</ol>
-<h2 id="读取数据">读取数据</h2>
-<p>读取数据一般分为两个步骤：</p>
-<ol>
-<li>使用Activity类的getSharedPreferences方法获得SharedPreferences对象；</li>
-<li>通过SharedPreferences对象的getXXX方法获取数据；</li>
-</ol>
-<h1 id="0x03存储安全性">0x03.存储安全性</h1>
-<p>Shared Preferences存储安全风险源于以下两方面：
-（1）开发者在创建文件时没有正确的选取合适的创建模式(MODE_PRIVATE、MODE_WORLD_READABLE以及MODE_WORLD_WRITEABLE)进行权限控制;
-（2）开发者过度依赖Android系统内部存储安全机制，将用户信息、密码等敏感重要的信息明文存储在Shared Preferences文件中，导致攻击者可通过root手机来查看敏感信息。</p>
-<ol>
-<li>如果使用MODE_WORLD_READABLE模式创建Shared Preferences文件，使得其他应用对该Shared Preferences文件具备可读的权限；</li>
-<li>使用MODE_WORLD_WRITEABLE模式创建Shared Preferences文件并含有“android:sharedUserId”属性值，使得其他应用对该应用的Shared Preferences文件具备可写的权限。</li>
-</ol>
-<h2 id="检测方法">检测方法</h2>
-<p>查看ContentWrapper类的getSharedPreferences方法、Content类的getSharedPreferences方法、Activity类的getPreferences方法和PreferenceManager类的setSharedPreferencesMode方法中对文件权限的设置，如果设置了MODE_WORLD_READABLE或者MODE_WORLD_WRITEABLE，则该文件就可以被第三方应用所访问，就认为有该风险。</p>
-<h2 id="修复方案">修复方案</h2>
-<p>避免使用MODE_WORLD_WRITEABLE和MODE_WORLD_READABLE模式创建进程间通信的文件，此处即为Shared Preferences；</p>
-<p>避免将密码等敏感数据信息明文存储在Shared Preferences中，即使Android系统内部存储安全机制，使得内部存储文件可不让其他应用读写，但是在Android系统root之后，该安全机制将失效而导致信息泄露。</p>
-<p>避免滥用“android:sharedUserId”属性，建议不要在使用“android:sharedUserId”属性的同时，对应用使用测试签名，否则其他应用拥有“android:sharedUserId”属性值和测试签名时，将会访问到内部存储文件数据。</p>
-<h1 id="0x04-参考链接">0x04. 参考链接</h1>
-<p><a href="https://www.jianshu.com/p/59b266c644f3" target="_blank" rel="noopener">https://www.jianshu.com/p/59b266c644f3</a></p>
-<p><a href="https://www.cnblogs.com/linjiqin/archive/2011/05/26/2059133.html" target="_blank" rel="noopener">https://www.cnblogs.com/linjiqin/archive/2011/05/26/2059133.html</a></p>
-<p><a href="https://developer.android.com/training/data-storage/shared-preferences?hl=zh-cn" target="_blank" rel="noopener">https://developer.android.com/training/data-storage/shared-preferences?hl=zh-cn</a></p>
-<p><a href="https://blog.csdn.net/u010889616/article/details/80961161" target="_blank" rel="noopener">https://blog.csdn.net/u010889616/article/details/80961161</a></p>
+            <h1 id="根目录结构意义">根目录（/）结构&amp;意义</h1>
+<h2 id="第一部份fhs-要求必须要存在的目录">第一部份：FHS 要求必须要存在的目录</h2>
+<h3 id="bin">/bin</h3>
+<p>系统有很多放置运行档的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式下还能够被操作的指令。 在/bin底下的指令可以被root与一般帐号所使用，主要有：cat, chmod, chown, date, mv, mkdir, cp, bash等等常用的指令。</p>
+<h3 id="boot">/boot</h3>
+<p>这个目录主要在放置开机会使用到的文件，包括Linux核心文件以及开机菜单与开机所需设置档等等。 Linux kernel常用的文件名为：vmlinuz，如果使用的是grub2这个开机管理程序， 则还会存在/boot/grub2/这个目录喔！</p>
+<h3 id="dev">/dev</h3>
+<p>在Linux系统上，任何设备与周边设备都是以文件的型态存在于这个目录当中的。 你只要透过访问这个目录底下的某个文件，就等于访问某个设备啰～ 比要重要的文件有/dev/null, /dev/zero, /dev/tty, /dev/loop*, /dev/sd*等等</p>
+<h3 id="etc">/etc</h3>
+<p>系统主要的设置档几乎都放置在这个目录内，例如人员的帐号密码档、 各种服务的启始档等等。一般来说，这个目录下的各文件属性是可以让一般用户查阅的， 但是只有root有权力修改。FHS建议不要放置可运行档(binary)在这个目录中喔。比较重要的文件有： /etc/modprobe.d/, /etc/passwd, /etc/fstab, /etc/issue 等等。另外 FHS 还规范几个重要的目录最好要存在 /etc/ 目录下喔：</p>
+<ul>
+<li>/etc/opt (必要)：这个目录在放置第三方协力软件 /opt 的相关设置档。</li>
+<li>/etc/X11/(建议)：与 X Window 有关的各种设置档都在这里，尤其是 xorg.conf 这个 X Server 的设置档。</li>
+<li>/etc/sgml/(建议)：与 SGML 格式有关的各项设置档</li>
+<li>/etc/xml/(建议)：与 XML 格式有关的各项设置档</li>
+</ul>
+<h3 id="lib">/lib</h3>
+<p>系统的函数库非常的多，而/lib放置的则是在开机时会用到的函数库， 以及在/bin或/sbin底下的指令会调用的函数库而已。 什么是函数库呢？你可以将他想成是『插件』，某些指令必须要有这些『插件』才能够顺利完成程序的运行之意。 另外 FHS 还要求底下的目录必须要存在：</p>
+<ul>
+<li>/lib/modules/：这个目录主要放置可抽换式的核心相关模块(驱动程序)喔！</li>
+</ul>
+<h3 id="media">/media</h3>
+<p>media是『媒体』的英文，顾名思义，这个/media底下放置的就是可移除的设备啦！ 包括软碟、光盘、DVD等等设备都暂时挂载于此。常见的文件名有：/media/floppy, /media/cdrom等等。</p>
+<h3 id="mnt">/mnt</h3>
+<p>如果你想要暂时挂载某些额外的设备，一般建议你可以放置到这个目录中。 在古早时候，这个目录的用途与/media相同啦！只是有了/media之后，这个目录就用来暂时挂载用了。</p>
+<h3 id="opt">/opt</h3>
+<p>这个是给第三方协力软件放置的目录。什么是第三方协力软件啊？ 举例来说，KDE这个桌面管理系统是一个独立的计划，不过他可以安装到Linux系统中，因此KDE的软件就建议放置到此目录下了。 另外，如果你想要自行安装额外的软件(非原本的distribution提供的)，那么也能够将你的软件安装到这里来。 不过，以前的Linux系统中，我们还是习惯放置在/usr/local目录下呢！</p>
+<h3 id="run">/run</h3>
+<p>早期的 FHS 规定系统开机后所产生的各项信息应该要放置到 /var/run 目录下，新版的 FHS 则规范到 /run 底下。 由于 /run 可以使用内存来仿真，因此性能上会好很多！</p>
+<h3 id="sbin">/sbin</h3>
+<p>Linux有非常多指令是用来设置系统环境的，这些指令只有root才能够利用来『设置』系统，其他用户最多只能用来『查找』而已。 放在/sbin底下的为开机过程中所需要的，里面包括了开机、修复、还原系统所需要的指令。 至于某些服务器软件程序，一般则放置到/usr/sbin/当中。至于本机自行安装的软件所产生的系统运行档(system binary)， 则放置到/usr/local/sbin/当中了。常见的指令包括：fdisk, fsck, ifconfig, mkfs等等。</p>
+<h3 id="srv">/srv</h3>
+<p>srv可以视为『service』的缩写，是一些网络服务启动之后，这些服务所需要取用的数据目录。 常见的服务例如WWW, FTP等等。举例来说，WWW服务器需要的网页数据就可以放置在/srv/www/里面。 不过，系统的服务数据如果尚未要提供给互联网任何人浏览的话，缺省还是建议放置到 /var/lib 底下即可。</p>
+<h3 id="tmp">/tmp</h3>
+<p>这是让一般用户或者是正在运行的进程暂时放置文件的地方。 这个目录是任何人都能够访问的，所以你需要定期的清理一下。当然，重要数据不可放置在此目录啊！ 因为FHS甚至建议在开机时，应该要将/tmp下的数据都删除唷！</p>
+<h3 id="usr">/usr</h3>
+<p>第二层 FHS 设置，后续介绍</p>
+<h3 id="var">/var</h3>
+<p>第二曾 FHS 设置，主要为放置变动性的数据，后续介绍</p>
+<h2 id="第二部份fhs-建议可以存在的目录">第二部份：FHS 建议可以存在的目录</h2>
+<h3 id="home">/home</h3>
+<p>这是系统缺省的用户家目录(home directory)。在你添加一个一般用户帐号时， 缺省的用户家目录都会规范到这里来。比较重要的是，家目录有两种代号喔：</p>
+<ul>
+<li>~：代表目前这个用户的家目录</li>
+<li>~dmtsai ：则代表 dmtsai 的家目录！</li>
+</ul>
+<h3 id="libltqualgt">/lib&lt;qual&gt;</h3>
+<p>用来存放与 /lib 不同的格式的二进位函数库，例如支持 64 比特的 /lib64 函数库等</p>
+<h3 id="root">/root</h3>
+<p>系统管理员(root)的家目录。之所以放在这里，是因为如果进入单人维护模式而仅挂载根目录时， 该目录就能够拥有root的家目录，所以我们会希望root的家目录与根目录放置在同一个分区中。</p>
+<h2 id="其他目录">其他目录</h2>
+<h3 id="lostfound">/lost+found</h3>
+<p>这个目录是使用标准的ext2/ext3/ext4文件系统格式才会产生的一个目录，目的在于当文件系统发生错误时， 将一些遗失的片段放置到这个目录下。不过如果使用的是 xfs 文件系统的话，就不会存在这个目录了！</p>
+<h3 id="proc">/proc</h3>
+<p>这个目录本身是一个『虚拟文件系统(virtual filesystem)』喔！他放置的数据都是在内存当中， 例如系统核心、行程信息(process)、周边设备的状态及网络状态等等。因为这个目录下的数据都是在内存当中， 所以本身不占任何硬盘空间啊！比较重要的文件例如：/proc/cpuinfo, /proc/dma, /proc/interrupts, /proc/ioports, /proc/net/* 等等。</p>
+<h3 id="sys">/sys</h3>
+<p>这个目录其实跟/proc非常类似，也是一个虚拟的文件系统，主要也是记录核心与系统硬件信息较相关的信息。 包括目前已加载的核心模块与核心侦测到的硬件设备信息等等。这个目录同样不占硬盘容量喔！</p>
 
           </div>
         </div>
@@ -173,19 +190,19 @@
   <div class="article-paging">
     
       <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
-  <div class="card-cover" background-image-lazy data-img="/image/7.jpg"></div>
+  <div class="card-cover" background-image-lazy data-img="/image/2.jpg"></div>
   <div class="card-text">
-    <a href="/posts/202110132245/"><h4 class="card-text--title text-ellipsis">Linux目录结构</h4></a>
-    <p class="card-text--row">2021-10-13 22:45</p>
+    <a href="/posts/202203102037/"><h4 class="card-text--title text-ellipsis">CVE-2022-22947</h4></a>
+    <p class="card-text--row">2022-03-10 20:37</p>
   </div>
 </section>
     
     
       <section class="post-paging--item card-container content-padding-primary soft-size--primary soft-style--box">
-  <div class="card-cover" background-image-lazy data-img="/image/5.jpg"></div>
+  <div class="card-cover" background-image-lazy data-img="/image/6.jpg"></div>
   <div class="card-text">
-    <a href="/posts/202106062308/"><h4 class="card-text--title text-ellipsis">HTTP请求走私详解</h4></a>
-    <p class="card-text--row">2021-06-06 23:08</p>
+    <a href="/posts/202109132223/"><h4 class="card-text--title text-ellipsis">SharedPreferences</h4></a>
+    <p class="card-text--row">2021-09-13 22:23</p>
   </div>
 </section>
     
@@ -218,10 +235,6 @@
 
 
 
-
-
-
-
 <section class="aside-widget widget-articles content-padding-large soft-size--large soft-style--box">
   <h2 class="widget-header">
     <div class="title">
@@ -233,16 +246,6 @@
       
       
         <li class="post-item"><a href="/posts/202208182234/">Rsync介绍</a></li>
-      
-        <li class="post-item"><a href="/posts/202208172330/">AES概述</a></li>
-      
-        <li class="post-item"><a href="/posts/202203102037/">CVE-2022-22947</a></li>
-      
-        <li class="post-item"><a href="/posts/202110132245/">Linux目录结构</a></li>
-      
-        <li class="post-item"><a href="/posts/202106062308/">HTTP请求走私详解</a></li>
-      
-        <li class="post-item"><a href="/posts/202102252222/">字符编码介绍</a></li>
       
     </ul>
   </div>
