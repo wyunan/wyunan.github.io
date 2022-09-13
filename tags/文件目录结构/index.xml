@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>文件目录结构 on 愚喃</title>
+    <link>https://wyunan.github.io/tags/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</link>
+    <description>Recent content in 文件目录结构 on 愚喃</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>al0sc0605@gmail.com (wyunan)</managingEditor>
+    <webMaster>al0sc0605@gmail.com (wyunan)</webMaster>
+    <copyright>© 2021 &lt;a href=&#34;https://github.com/wyunan&#34;&gt;wyunan&lt;/a&gt;</copyright><atom:link href="https://wyunan.github.io/tags/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux目录结构</title>
+      <link>https://wyunan.github.io/posts/101010000/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>al0sc0605@gmail.com (wyunan)</author>
+      <guid>https://wyunan.github.io/posts/101010000/</guid>
+      <description>根目录（/）结构&amp;amp;意义 第一部份：FHS 要求必须要存在的目录 /bin 系统有很多放置运行档的目录，但/bin比较特殊。因为/bin放置的是在单</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -19,5 +19,14 @@
       <description>一、简介 rsync 是一个常用的 Linux 应用程序，用于文件同步。 它可以在本地计算机与远程计算机之间，或者两个本地目录之间同步文件（但不支持两台远程计算机之间</description>
     </item>
     
+    <item>
+      <title>Linux目录结构</title>
+      <link>https://wyunan.github.io/posts/101010000/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>al0sc0605@gmail.com (wyunan)</author>
+      <guid>https://wyunan.github.io/posts/101010000/</guid>
+      <description>根目录（/）结构&amp;amp;意义 第一部份：FHS 要求必须要存在的目录 /bin 系统有很多放置运行档的目录，但/bin比较特殊。因为/bin放置的是在单</description>
+    </item>
+    
   </channel>
 </rss>
