@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XML on 愚喃</title>
+    <link>https://wyunan.github.io/tags/xml/</link>
+    <description>Recent content in XML on 愚喃</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <managingEditor>al0sc0605@gmail.com (wyunan)</managingEditor>
+    <webMaster>al0sc0605@gmail.com (wyunan)</webMaster>
+    <copyright>© 2021 &lt;a href=&#34;https://github.com/wyunan&#34;&gt;wyunan&lt;/a&gt;</copyright>
+    <lastBuildDate>Mon, 13 Sep 2021 22:23:51 +0800</lastBuildDate><atom:link href="https://wyunan.github.io/tags/xml/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SharedPreferences</title>
+      <link>https://wyunan.github.io/posts/202109132223/</link>
+      <pubDate>Mon, 13 Sep 2021 22:23:51 +0800</pubDate>
+      <author>al0sc0605@gmail.com (wyunan)</author>
+      <guid>https://wyunan.github.io/posts/202109132223/</guid>
+      <description>Android 系统提供了四种 Android 应用本地存储方式：Shared Preferences、SQLite Databases、Internal Storage、Ex</description>
+    </item>
+    
+  </channel>
+</rss>
